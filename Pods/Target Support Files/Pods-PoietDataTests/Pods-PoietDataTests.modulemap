@@ -1,0 +1,6 @@
+module Pods_PoietDataTests {
+  umbrella header "Pods-PoietDataTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

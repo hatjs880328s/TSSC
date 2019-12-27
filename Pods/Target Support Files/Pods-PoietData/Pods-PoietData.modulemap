@@ -1,0 +1,6 @@
+module Pods_PoietData {
+  umbrella header "Pods-PoietData-umbrella.h"
+
+  export *
+  module * { export * }
+}
