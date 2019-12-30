@@ -50,8 +50,8 @@ class TanshiBLL: NSObject {
         super.init()
     }
 
-    func getData() {
-        TangshiUti.getAllDirAndFiles { (models) in
+    func getData(path: String) {
+        TangshiUti.getAllDirAndFiles(path: path) { (models) in
             self.dataSource = models
         }
     }

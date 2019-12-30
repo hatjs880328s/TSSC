@@ -43,6 +43,7 @@ extension MainPageViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.row {
         case 0:
             let con = TangshiViewController()
+            con.path = "json"
             self.navigationController?.pushViewController(con, animated: true)
         default:
             break

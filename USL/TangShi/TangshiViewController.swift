@@ -18,12 +18,14 @@ class TangshiViewController: UIViewController {
     @IBOutlet weak var contentTab: UITableView!
 
     let bll = TanshiBLL()
+
+    var path: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        self.bll.getData()
-        self.title = "唐诗"
+        self.bll.getData(path: path)
+        self.title = "唐诗宋词"
         self.bll.reloadAction = { [weak self] in
             MBProgressHUD.hide(for: self?.view ?? UIView(), animated: true)
             self?.contentTab.reloadData()
@@ -47,6 +49,15 @@ extension TangshiViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // 唐诗详情 | 作者详情
+
+        // error文件夹
+        if self.bll.dataSource[indexPath.row].type != "file" {
+            let con = TangshiViewController()
+            con.path = self.bll.dataSource[indexPath.row].path
+            self.navigationController?.pushViewController(con, animated: true)
+            return
+        }
+        //其他文件
         if self.bll.dataSource[indexPath.row].path.contains("authors") {
             let path = self.bll.dataSource[indexPath.row].path
             let con = TangshiAuthorDetailViewController()

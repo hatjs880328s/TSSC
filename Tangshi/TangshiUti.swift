@@ -25,8 +25,8 @@ class TangshiUti: NSObject {
     }
 
     /// 获取唐诗根目录信息（字典、文件）
-    static func getAllDirAndFiles(resultAction: @escaping (_ result: [GitPathModel]) -> Void) {
-        NormalUti.getDirOrFileInfo(path: self.pathDic["tsrootPath"] ?? "") { (result) in
+    static func getAllDirAndFiles(path: String, resultAction: @escaping (_ result: [GitPathModel]) -> Void) {
+        NormalUti.getDirOrFileInfo(path: path) { (result) in
             guard let realInfo = result as? NSArray else { return }
             var result: [GitPathModel] = []
             realInfo.forEach({
