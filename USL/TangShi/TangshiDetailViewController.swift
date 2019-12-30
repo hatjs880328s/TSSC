@@ -27,8 +27,10 @@ class TangshiDetailViewController: UIViewController {
         self.title = "TS详情"
 
         self.bll.detailReloadAction = { [weak self] in
+            MBProgressHUD.hide(for: self?.view ?? UIView(), animated: true)
             self?.tab.reloadData()
         }
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         bll.getTSDetailInfo(path: self.filePath)
     }
 

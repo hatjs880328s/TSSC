@@ -5,6 +5,7 @@ def shared_pods
   pod 'Alamofire'
   pod 'HandyJSON'
   pod 'SwiftyJSON'
+  pod 'MBProgressHUD'
 end
 
 target 'PoietData' do

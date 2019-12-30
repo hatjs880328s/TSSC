@@ -21,9 +21,11 @@ class TangshiViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         self.bll.getData()
         self.title = "唐诗"
         self.bll.reloadAction = { [weak self] in
+            MBProgressHUD.hide(for: self?.view ?? UIView(), animated: true)
             self?.contentTab.reloadData()
         }
     }

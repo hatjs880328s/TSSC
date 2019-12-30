@@ -26,9 +26,10 @@ class TangshiAuthorDetailViewController: UIViewController {
         super.viewDidLoad()
         self.title = "唐诗作者"
         self.bll.tsauthorReloadAction = { [weak self] in
+            MBProgressHUD.hide(for: self?.view ?? UIView(), animated: true)
             self?.tab.reloadData()
         }
-
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         self.bll.getTSAuthorInfo(path: path)
     }
 
