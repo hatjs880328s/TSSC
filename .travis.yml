@@ -1,1 +1,6 @@
 ## .travis.yml
+
+language: Swift
+xcode_workspace: PoietData.xcworkspace # path to your xcodeproj folder
+xcode_scheme: PoietData
+xcode_destination: platform=iOS Simulator,OS=10.1,name=iPad Pro (9.7-inch)
