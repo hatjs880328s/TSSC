@@ -1,7 +1,8 @@
-## .travis.yml
 
-language: Swift
-xcode_workspace: PoietData.xcworkspace # path to your xcodeproj folder
-xcode_scheme: PoietData
-xcode_destination: platform=iOS Simulator,OS=13.1,name=iPhone 11
-SWIFT_VERSION: 5.0
+
+language: objective-c
+osx_image: xcode10.2
+xcode_sdk: iphonesimulator12.0
+script:
+- set -o pipefail
+- travis_retry xcodebuild -workspace PoietData.xcworkspace -scheme "PoietData iOS" -destination "platform=iOS Simulator,name=iPhone 6" build-for-testing test | xcpretty
