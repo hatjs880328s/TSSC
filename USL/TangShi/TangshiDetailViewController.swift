@@ -32,6 +32,17 @@ class TangshiDetailViewController: UIViewController {
         }
         MBProgressHUD.showAdded(to: self.view, animated: true)
         bll.getTSDetailInfo(path: self.filePath)
+
+        initVw()
+    }
+
+    func initVw() {
+        let syncBtn = UIBarButtonItem(title: "同步", style: UIBarButtonItem.Style.done, target: self, action: #selector(self.syncInfos))
+        self.navigationItem.rightBarButtonItem = syncBtn
+    }
+
+    @objc func syncInfos() {
+
     }
 
 }

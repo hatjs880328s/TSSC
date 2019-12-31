@@ -36,6 +36,8 @@ class TanshiBLL: NSObject {
 
     var detailReloadAction: (() -> Void)?
 
+
+
     // ===== TS作者列表 =====
 
     var tsauthorDatasource = [TangshiAuthorModel]() {
@@ -60,6 +62,12 @@ class TanshiBLL: NSObject {
         TangshiUti.getTSFileDetailInfos(filePath: path) { (result) in
             self.detailDatasource = result as! [TangshiModel]
         }
+    }
+
+    /// tssc数据同步
+    func syncDetailDatasource() {
+        if self.detailDatasource.count == 0 { return }
+        
     }
 
     func getTSAuthorInfo(path: String) {
