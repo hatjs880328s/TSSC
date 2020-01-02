@@ -20,6 +20,9 @@ class TangshiViewController: UIViewController {
     let bll = TanshiBLL()
 
     var path: String = ""
+
+    /// 是否需要自动同步操作 - 默认为false
+    private var shouldAutoStart: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +32,32 @@ class TangshiViewController: UIViewController {
         self.bll.reloadAction = { [weak self] in
             MBProgressHUD.hide(for: self?.view ?? UIView(), animated: true)
             self?.contentTab.reloadData()
+        }
+        initVw()
+    }
+
+    func initVw() {
+        let syncBtn = UIBarButtonItem(title: "auto-sync", style: UIBarButtonItem.Style.done, target: self, action: #selector(self.syncInfos))
+        self.navigationItem.rightBarButtonItem = syncBtn
+    }
+
+    /// 自动同步开始
+    @objc func syncInfos() {
+        self.shouldAutoStart = true
+
+        self.bll.autoSYNCTSInfos { [weak self] (path) in
+            self?.jump2TSDetail(path: path, shouldAutoSync: true)
+        }
+    }
+
+    /// 自动同步处理
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        if self.shouldAutoStart {
+            self.bll.autoSYNCTSInfos { [weak self] (path) in
+                self?.jump2TSDetail(path: path, shouldAutoSync: true)
+            }
         }
     }
 
@@ -66,10 +95,16 @@ extension TangshiViewController: UITableViewDelegate, UITableViewDataSource {
             self.navigationController?.pushViewController(con, animated: true)
         } else {
             let path = self.bll.dataSource[indexPath.row].path
-            let con = TangshiDetailViewController()
-            con.filePath = path
-            self.navigationController?.pushViewController(con, animated: true)
+            self.jump2TSDetail(path: path, shouldAutoSync: false)
         }
 
+    }
+
+    /// 跳入TS详情页面
+    func jump2TSDetail(path: String, shouldAutoSync: Bool) {
+        let con = TangshiDetailViewController()
+        con.filePath = path
+        con.shouldAutoSync = shouldAutoSync
+        self.navigationController?.pushViewController(con, animated: true)
     }
 }

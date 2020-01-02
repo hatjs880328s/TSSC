@@ -18,6 +18,9 @@ class TangshiDetailViewController: UIViewController {
 
     var filePath: String = ""
 
+    /// 是否是自动同步并处理ui
+    var shouldAutoSync: Bool = false
+
     let bll = TanshiBLL()
     
     @IBOutlet weak var tab: UITableView!
@@ -29,6 +32,10 @@ class TangshiDetailViewController: UIViewController {
         self.bll.detailReloadAction = { [weak self] in
             MBProgressHUD.hide(for: self?.view ?? UIView(), animated: true)
             self?.tab.reloadData()
+
+            if self?.shouldAutoSync ?? false {
+                self?.syncInfos()
+            }
         }
         MBProgressHUD.showAdded(to: self.view, animated: true)
         bll.getTSDetailInfo(path: self.filePath)
@@ -47,6 +54,10 @@ class TangshiDetailViewController: UIViewController {
         hud.label.text = "async..."
         self.bll.recursiveProgressDatasource(datasource: self.bll.detailDatasource) { (result) in
             hud.hide(animated: true)
+
+            if self.shouldAutoSync {
+                self.navigationController?.popViewController(animated: true)
+            }
         }
     }
 

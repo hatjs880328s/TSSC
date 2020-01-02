@@ -25,6 +25,7 @@ class TanshiBLL: NSObject {
 
     var reloadAction: (() -> Void)?
 
+    var nowpageIdx: Int = 0
 
     // ===== TS详情列表 =====
 
@@ -56,6 +57,11 @@ class TanshiBLL: NSObject {
         super.init()
     }
 
+}
+
+/// ts列表数据处理  获取数据、循环同步数据
+extension TanshiBLL {
+
     /// 根据path获取数据（列表）
     func getData(path: String) {
         TangshiUti.getAllDirAndFiles(path: path) { (models) in
@@ -63,12 +69,45 @@ class TanshiBLL: NSObject {
         }
     }
 
+    /// 自动遍历同步TS信息方法
+    func autoSYNCTSInfos(action: (_ path: String) -> Void) {
+
+        print("TS 数据开始自动同步...")
+
+        print("now page is : \(self.nowpageIdx)")
+
+        if self.dataSource.count < self.nowpageIdx + 1 { return }
+
+        let item = self.dataSource[self.nowpageIdx]
+
+        if !item.path.contains("poet") {
+            self.nowpageIdx += 1
+            self.autoSYNCTSInfos(action: action)
+            return
+        }
+
+        if item.calPathFlag {
+            self.nowpageIdx += 1
+            self.autoSYNCTSInfos(action: action)
+            return
+        }
+
+        action(item.path)
+
+        self.nowpageIdx += 1
+    }
+}
+
+/// ts作者页面数据获取
+extension TanshiBLL {
+
     /// 获取作者信息
     func getTSAuthorInfo(path: String) {
         TangshiUti.getTSAuthorInfos(filepath: path) { (result) in
             self.tsauthorDatasource = result as! [TangshiAuthorModel]
         }
     }
+
 }
 
 /// ts详情处理 获取数据、同步数据
@@ -78,6 +117,7 @@ extension TanshiBLL {
     func progressDiskFlag() {
         let obj = YYCache(name: yycacheName)
         obj?.setObject("1" as NSString, forKey: self.detailPath)
+        print("自动同步数据完毕，持久化flag完毕")
     }
 
     /// 获取详情信息
@@ -85,6 +125,7 @@ extension TanshiBLL {
         self.detailPath = path
         TangshiUti.getTSFileDetailInfos(filePath: path) { (result) in
             self.detailDatasource = result as! [TangshiModel]
+            print("自动同步数据获取信息完毕 path: \(path) info count: \(self.detailDatasource.count)")
         }
     }
 
@@ -96,7 +137,13 @@ extension TanshiBLL {
                 $0.paragraphs = $0.realInfo
             })
         }
-        if datasource.count <= 0 { resultAction(true) ; progressDiskFlag() ; return }
+        if datasource.count <= 0 {
+            if self.detailDatasource.count != 0 {
+                self.progressDiskFlag()
+            }
+            resultAction(true)
+            return
+        }
         if datasource.count >= pageNo {
             // 处理50个如果成功 递归处理后面数据
             let model = TangshiSyncModel()
@@ -125,8 +172,8 @@ extension TanshiBLL {
             guard let infos = model.toJSON() else { return }
             NormalUti.syncTSSC(infos: infos) { (result) in
                 if (((result as? NSDictionary)?["result"] as? Bool) ?? false) {
-                    resultAction(true)
                     self.progressDiskFlag()
+                    resultAction(true)
                 } else {
                     resultAction(false)
                 }
