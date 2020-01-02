@@ -43,3 +43,11 @@ class TangshiModel: HandyJSON {
         return LFCGzipUtility().replaceUnicode(input)
     }
 }
+
+/// 为了同步TS信息所使用的model
+class TangshiSyncModel: HandyJSON {
+
+    var infos: [TangshiModel] = []
+    
+    required init() { }
+}

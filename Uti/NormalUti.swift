@@ -40,4 +40,11 @@ class NormalUti: NSObject {
         guard let result = String(data: base64Data, encoding: String.Encoding.utf8) else { return "" }
         return result
     }
+
+    /// 同步TSSC信息
+    static func syncTSSC(infos: [String: Any], resultInfo: @escaping (_ resultInfo: Any?) -> Void) {
+        Alamofire.request(NormalConfig.syncTSSCApi, method: HTTPMethod.post, parameters: infos, encoding: JSONEncoding.default, headers: nil).responseJSON { (res) in
+            resultInfo(res.result.value)
+        }
+    }
 }

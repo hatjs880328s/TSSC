@@ -36,6 +36,13 @@ class GitPathModel: NSObject, HandyJSON {
 
     var content: String = ""
 
+    /// 后期计算所得 - 是否已经异步操作
+    var calPathFlag: Bool {
+        let obj = YYCache(name: "TSSCYYCACHENAME")
+        if obj?.object(forKey: self.path) == nil { return false }
+        return true
+    }
+
     required override init() {
         super.init()
     }

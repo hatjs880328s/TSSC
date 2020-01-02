@@ -25,7 +25,7 @@ class TangshiViewController: UIViewController {
         super.viewDidLoad()
         MBProgressHUD.showAdded(to: self.view, animated: true)
         self.bll.getData(path: path)
-        self.title = "唐诗宋词"
+        self.title = "Path list"
         self.bll.reloadAction = { [weak self] in
             MBProgressHUD.hide(for: self?.view ?? UIView(), animated: true)
             self?.contentTab.reloadData()
@@ -38,8 +38,9 @@ extension TangshiViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "reuseid")
-        cell.textLabel?.text = self.bll.dataSource[indexPath.row].name
-        cell.detailTextLabel?.text = "path: \(self.bll.dataSource[indexPath.row].path)"
+        let model = self.bll.dataSource[indexPath.row]
+        cell.textLabel?.text = model.name
+        cell.detailTextLabel?.text = "同步状态: \(model.calPathFlag ? "✅" : "❌")  路径: \(self.bll.dataSource[indexPath.row].path)"
         return cell
     }
 

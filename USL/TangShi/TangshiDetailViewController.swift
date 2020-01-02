@@ -42,7 +42,12 @@ class TangshiDetailViewController: UIViewController {
     }
 
     @objc func syncInfos() {
-
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.mode = .annularDeterminate
+        hud.label.text = "async..."
+        self.bll.recursiveProgressDatasource(datasource: self.bll.detailDatasource) { (result) in
+            hud.hide(animated: true)
+        }
     }
 
 }

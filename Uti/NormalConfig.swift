@@ -20,4 +20,10 @@ class NormalConfig: NSObject {
 
     /// base uri
     static var baseUri: String = "https://api.github.com/repos/hatjs880328s/chinese-poetry/contents/"
+
+    /// tssc api - base host
+    static var baseApiHost: String = "http://127.0.0.1:8081"
+
+    /// sync tssc api
+    static var syncTSSCApi: String = "\(NormalConfig.baseApiHost)/tssc/sync"
 }

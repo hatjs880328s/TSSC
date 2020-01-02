@@ -4,3 +4,5 @@
 
 #import "LFCGzipUtility.h"
 #import "MBProgressHUD.h"
+#import "YYDiskCache.h"
+#import "YYCache.h"
