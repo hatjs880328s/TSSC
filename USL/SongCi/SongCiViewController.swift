@@ -96,8 +96,11 @@ extension SongCiViewController: UITableViewDelegate, UITableViewDataSource {
         }
         if self.bll.dataSource[indexPath.row].path.contains("ci.song") {
             jump2TSDetail(path: self.bll.dataSource[indexPath.row].path, shouldAutoSync: false)
-        } else {
-
+        } else if self.bll.dataSource[indexPath.row].path.contains("author") {
+            let con = SCAuthorViewController()
+            con.sha = self.bll.dataSource[indexPath.row].sha
+            con.path = self.bll.dataSource[indexPath.row].path
+            self.navigationController?.pushViewController(con, animated: true)
         }
     }
 }

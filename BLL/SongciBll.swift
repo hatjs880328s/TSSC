@@ -43,6 +43,18 @@ class SongciBll: NSObject {
 
     let pageNo: Int = 20
 
+    // ===== TS作者列表 =====
+
+    var tsauthorDatasource = [SongciAuthorModel]() {
+        didSet {
+            tsauthorReloadAction?()
+        }
+    }
+
+    var tsauthorReloadAction: (() -> Void)?
+
+    var authorFilepath: String = ""
+
     override init() {
         super.init()
     }
@@ -160,9 +172,73 @@ extension SongciBll {
     }
 }
 
-// MARK: actions
+// MARK: 作者信息
 extension SongciBll {
+    
+    /// 根据文件的sha值获取作者信息
+    func getAuthorBlob(sha: String, path: String) {
+        self.authorFilepath = path
+        TangshiUti.getSCBlobAuthorInfos(filesha: sha) { (infos: [SongciAuthorModel?]) in
+            self.tsauthorDatasource = infos as! [SongciAuthorModel]
+            for eachItem in self.tsauthorDatasource {
+                eachItem.id = eachItem.description.md5()
+                eachItem.desc = eachItem.description
+            }
+        }
 
+
+    }
+
+    /// 同步成功则记录flag
+    func progressAuthorDiskFlag() {
+        let obj = YYCache(name: yycacheName)
+        obj?.setObject("1" as NSString, forKey: self.authorFilepath)
+        print("自动同步数据完毕，持久化flag完毕")
+    }
+
+    /// 递归同步TS作者信息
+    func recursiveProgressAuthorDatasource(datasource: [SongciAuthorModel], resultAction: @escaping (_ action: Bool) -> Void) {
+        if datasource.count <= 0 {
+            progressAuthorDiskFlag()
+            resultAction(true)
+            return
+        }
+        if datasource.count >= pageNo {
+            // 处理50个如果成功 递归处理后面数据
+            let model = SCAuthorSyncModel()
+            var progressModels: [SongciAuthorModel] = []
+            var nonProgressModels: [SongciAuthorModel] = []
+            datasource.forEach({
+                if progressModels.count < pageNo {
+                    progressModels.append($0)
+                } else {
+                    nonProgressModels.append($0)
+                }
+            })
+            model.infos = progressModels
+            guard let infos = model.toJSON() else { return }
+            NormalUti.syncSCAuthor(infos: infos) { (result) in
+                if (((result as? NSDictionary)?["result"] as? Bool) ?? false) {
+                    self.recursiveProgressAuthorDatasource(datasource: nonProgressModels, resultAction: resultAction)
+                } else {
+                    resultAction(false)
+                }
+            }
+        } else {
+            // 处理当前数组所有数据 - 结束
+            let model = SCAuthorSyncModel()
+            model.infos = datasource
+            guard let infos = model.toJSON() else { return }
+            NormalUti.syncSCAuthor(infos: infos) { (result) in
+                if (((result as? NSDictionary)?["result"] as? Bool) ?? false) {
+                    self.progressAuthorDiskFlag()
+                    resultAction(true)
+                } else {
+                    resultAction(false)
+                }
+            }
+        }
+    }
 }
 
 // MARK: delegate

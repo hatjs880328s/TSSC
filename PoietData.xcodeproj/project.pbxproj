@@ -41,6 +41,9 @@
 		5656313423BF19A800F70B55 /* SongciDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5656313223BF19A800F70B55 /* SongciDetailViewController.xib */; };
 		5656313623BF1BC400F70B55 /* SongciModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5656313523BF1BC400F70B55 /* SongciModel.swift */; };
 		5656313823BF1E6200F70B55 /* NormalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5656313723BF1E6200F70B55 /* NormalExtension.swift */; };
+		5656313A23BF39C000F70B55 /* SongciAuthorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5656313923BF39C000F70B55 /* SongciAuthorModel.swift */; };
+		5656313D23BF3BD900F70B55 /* SCAuthorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5656313B23BF3BD900F70B55 /* SCAuthorViewController.swift */; };
+		5656313E23BF3BD900F70B55 /* SCAuthorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5656313C23BF3BD900F70B55 /* SCAuthorViewController.xib */; };
 		9D1EAB89A20B3A4D79726928 /* libPods-PoietDataTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A0D193BB053F6595E697E9 /* libPods-PoietDataTests.a */; };
 		B271548E7AE0D9E3CB3B4252 /* libPods-PoietData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E988A1617962A12BA5FAF83 /* libPods-PoietData.a */; };
 /* End PBXBuildFile section */
@@ -98,6 +101,9 @@
 		5656313223BF19A800F70B55 /* SongciDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SongciDetailViewController.xib; sourceTree = "<group>"; };
 		5656313523BF1BC400F70B55 /* SongciModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongciModel.swift; sourceTree = "<group>"; };
 		5656313723BF1E6200F70B55 /* NormalExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalExtension.swift; sourceTree = "<group>"; };
+		5656313923BF39C000F70B55 /* SongciAuthorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongciAuthorModel.swift; sourceTree = "<group>"; };
+		5656313B23BF3BD900F70B55 /* SCAuthorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCAuthorViewController.swift; sourceTree = "<group>"; };
+		5656313C23BF3BD900F70B55 /* SCAuthorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SCAuthorViewController.xib; sourceTree = "<group>"; };
 		5E988A1617962A12BA5FAF83 /* libPods-PoietData.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PoietData.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76631FE2EC92B6BD8394A1EB /* Pods-PoietData.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PoietData.release.xcconfig"; path = "Target Support Files/Pods-PoietData/Pods-PoietData.release.xcconfig"; sourceTree = "<group>"; };
 		7E1E048131F32EAAAF8B63CB /* Pods-PoietData.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PoietData.debug.xcconfig"; path = "Target Support Files/Pods-PoietData/Pods-PoietData.debug.xcconfig"; sourceTree = "<group>"; };
@@ -210,6 +216,7 @@
 				563B694B23B5FD9600B858BD /* TangshiAuthorModel.swift */,
 				5656312823BECDD900F70B55 /* GitBLOBModel.swift */,
 				5656313523BF1BC400F70B55 /* SongciModel.swift */,
+				5656313923BF39C000F70B55 /* SongciAuthorModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -273,6 +280,8 @@
 				5656312C23BF154800F70B55 /* SongCiViewController.xib */,
 				5656313123BF19A800F70B55 /* SongciDetailViewController.swift */,
 				5656313223BF19A800F70B55 /* SongciDetailViewController.xib */,
+				5656313B23BF3BD900F70B55 /* SCAuthorViewController.swift */,
+				5656313C23BF3BD900F70B55 /* SCAuthorViewController.xib */,
 			);
 			path = SongCi;
 			sourceTree = "<group>";
@@ -377,6 +386,7 @@
 				563B693723B5E1FF00B858BD /* TangshiViewController.xib in Resources */,
 				563B693D23B5E3CF00B858BD /* TangshiDetailViewController.xib in Resources */,
 				563B690823B5AD6B00B858BD /* LaunchScreen.storyboard in Resources */,
+				5656313E23BF3BD900F70B55 /* SCAuthorViewController.xib in Resources */,
 				563B690523B5AD6B00B858BD /* Assets.xcassets in Resources */,
 				563B690323B5AD6A00B858BD /* Main.storyboard in Resources */,
 				5656312E23BF154800F70B55 /* SongCiViewController.xib in Resources */,
@@ -456,10 +466,12 @@
 				563B691623B5AF0500B858BD /* NormalUti.swift in Sources */,
 				563B692E23B5E01C00B858BD /* MainPageViewController.swift in Sources */,
 				5656313323BF19A800F70B55 /* SongciDetailViewController.swift in Sources */,
+				5656313A23BF39C000F70B55 /* SongciAuthorModel.swift in Sources */,
 				563B690023B5AD6A00B858BD /* ViewController.swift in Sources */,
 				563B693923B5E24700B858BD /* TanshiBLL.swift in Sources */,
 				563B68FE23B5AD6A00B858BD /* AppDelegate.swift in Sources */,
 				5656312D23BF154800F70B55 /* SongCiViewController.swift in Sources */,
+				5656313D23BF3BD900F70B55 /* SCAuthorViewController.swift in Sources */,
 				5656313823BF1E6200F70B55 /* NormalExtension.swift in Sources */,
 				563B691123B5AE5E00B858BD /* NormalConfig.swift in Sources */,
 				563B694323B5ED1F00B858BD /* DetailCellTableViewCell.swift in Sources */,

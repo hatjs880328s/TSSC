@@ -75,4 +75,11 @@ class NormalUti: NSObject {
             resultInfo(res.result.value)
         }
     }
+
+    /// 同步scauthor 信息
+    static func syncSCAuthor(infos: [String: Any], resultInfo: @escaping (_ resultInfo: Any?) -> Void) {
+        Alamofire.request(NormalConfig.syncSCAuthorApi, method: HTTPMethod.post, parameters: infos, encoding: JSONEncoding.default, headers: nil).responseJSON { (res) in
+            resultInfo(res.result.value)
+        }
+    }
 }
