@@ -89,9 +89,9 @@ extension TangshiViewController: UITableViewDelegate, UITableViewDataSource {
         }
         //其他文件
         if self.bll.dataSource[indexPath.row].path.contains("authors") {
-            let path = self.bll.dataSource[indexPath.row].path
+            let sha = self.bll.dataSource[indexPath.row].sha
             let con = TangshiAuthorDetailViewController()
-            con.path = path
+            con.sha = sha
             self.navigationController?.pushViewController(con, animated: true)
         } else {
             let path = self.bll.dataSource[indexPath.row].path

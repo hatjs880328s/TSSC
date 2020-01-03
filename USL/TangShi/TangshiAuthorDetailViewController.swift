@@ -18,7 +18,7 @@ class TangshiAuthorDetailViewController: UIViewController {
 
     @IBOutlet weak var tab: UITableView!
 
-    var path: String = ""
+    var sha: String = ""
 
     let bll = TanshiBLL()
     
@@ -30,7 +30,8 @@ class TangshiAuthorDetailViewController: UIViewController {
             self?.tab.reloadData()
         }
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        self.bll.getTSAuthorInfo(path: path)
+        self.bll.getTSAuthorInfo(path: sha)
+        self.bll.getAuthorBlob(sha: self.sha)
     }
 
 }

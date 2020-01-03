@@ -47,4 +47,18 @@ class NormalUti: NSObject {
             resultInfo(res.result.value)
         }
     }
+
+    /// blob get 
+    static func blobGet(sha: String, resultInfo: @escaping (_ resultInfo: Any?) -> Void) {
+        let url = NormalConfig.blobUri + sha
+
+        let headerInfo = [
+            "Authorization": base64Decode(base64Str: NormalConfig.bearer),
+            "Accept": "application/vnd.github.squirrel-girl-preview"
+        ]
+
+        Alamofire.request(url, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.default, headers: headerInfo).responseJSON { (response) in
+            resultInfo(response.result.value)
+        }
+    }
 }

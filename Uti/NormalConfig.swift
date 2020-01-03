@@ -21,6 +21,9 @@ class NormalConfig: NSObject {
     /// base uri
     static var baseUri: String = "https://api.github.com/repos/hatjs880328s/chinese-poetry/contents/"
 
+    /// blob get
+    static var blobUri: String = "https://api.github.com/repos/hatjs880328s/chinese-poetry/git/blobs/"
+
     /// tssc api - base host
     static var baseApiHost: String = "http://127.0.0.1:8081"
 

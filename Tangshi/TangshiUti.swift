@@ -69,4 +69,21 @@ class TangshiUti: NSObject {
         }
     }
 
+    /// blob author
+    static func getBlobAuthorInfos(filesha: String, resultAction: @escaping (_ result: [TangshiAuthorModel?]) -> Void) {
+        NormalUti.blobGet(sha: filesha) { (result) in
+            guard let readDic = result as? NSDictionary else { return }
+
+            guard let model = GitBLOBModel.deserialize(from: readDic) else { return }
+
+            let content = (model.content as NSString).replacingOccurrences(of: "\n", with: "")
+
+            let jsonStr = NormalUti.base64Decode(base64Str: content)
+
+            let infos = [TangshiAuthorModel].deserialize(from: jsonStr)
+
+            resultAction(infos ?? [])
+        }
+    }
+
 }

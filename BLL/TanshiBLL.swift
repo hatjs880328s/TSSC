@@ -102,10 +102,23 @@ extension TanshiBLL {
 extension TanshiBLL {
 
     /// 获取作者信息
+    @available(*, deprecated, renamed: "getTSAuthorInfo(path:)", message: "Use getAuthorBlob overload instead.")
     func getTSAuthorInfo(path: String) {
         TangshiUti.getTSAuthorInfos(filepath: path) { (result) in
             self.tsauthorDatasource = result as! [TangshiAuthorModel]
         }
+    }
+
+    /// 根据文件的sha值获取作者信息
+    func getAuthorBlob(sha: String) {
+        TangshiUti.getBlobAuthorInfos(filesha: sha) { (infos: [TangshiAuthorModel?]) in
+            self.tsauthorDatasource = infos as! [TangshiAuthorModel]
+        }
+    }
+
+    /// 作者信息同步
+    func syncAuthor() {
+
     }
 
 }
