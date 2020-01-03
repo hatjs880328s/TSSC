@@ -32,7 +32,7 @@ class APIUtiTest: XCTestCase {
     func testTSRootFilesAndDirs() {
         let exp = expectation(description: "获取唐诗的根目录")
         let timeOut = 10 as TimeInterval
-        TangshiUti.getAllDirAndFiles { (models) in
+        TangshiUti.getAllDirAndFiles(path: "") { (models) in
             XCTAssert(models.count != 0, "个数不对")
             exp.fulfill()
         }

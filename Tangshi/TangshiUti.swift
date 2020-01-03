@@ -16,10 +16,6 @@ import SwiftyJSON
 // MARK: 唐诗处理UTI
 class TangshiUti: NSObject {
 
-    static let pathDic = [
-        "tsrootPath": "json"
-    ]
-
     override init() {
         super.init()
     }
