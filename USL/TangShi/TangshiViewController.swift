@@ -89,10 +89,8 @@ extension TangshiViewController: UITableViewDelegate, UITableViewDataSource {
         }
         //其他文件
         if self.bll.dataSource[indexPath.row].path.contains("authors") {
-            let sha = self.bll.dataSource[indexPath.row].sha
-            let con = TangshiAuthorDetailViewController()
-            con.sha = sha
-            self.navigationController?.pushViewController(con, animated: true)
+            let model = self.bll.dataSource[indexPath.row]
+            jump2TSAuthorDetail(sha: model.sha, path: model.path)
         } else {
             let path = self.bll.dataSource[indexPath.row].path
             self.jump2TSDetail(path: path, shouldAutoSync: false)
@@ -105,6 +103,14 @@ extension TangshiViewController: UITableViewDelegate, UITableViewDataSource {
         let con = TangshiDetailViewController()
         con.filePath = path
         con.shouldAutoSync = shouldAutoSync
+        self.navigationController?.pushViewController(con, animated: true)
+    }
+
+    /// 跳入TS作者详情
+    func jump2TSAuthorDetail(sha: String, path: String) {
+        let con = TangshiAuthorDetailViewController()
+        con.sha = sha
+        con.path = path
         self.navigationController?.pushViewController(con, animated: true)
     }
 }

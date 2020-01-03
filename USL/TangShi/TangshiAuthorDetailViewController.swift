@@ -20,6 +20,8 @@ class TangshiAuthorDetailViewController: UIViewController {
 
     var sha: String = ""
 
+    var path: String = ""
+
     let bll = TanshiBLL()
     
     override func viewDidLoad() {
@@ -30,8 +32,22 @@ class TangshiAuthorDetailViewController: UIViewController {
             self?.tab.reloadData()
         }
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        self.bll.getTSAuthorInfo(path: sha)
-        self.bll.getAuthorBlob(sha: self.sha)
+        self.bll.getAuthorBlob(sha: self.sha, path: self.path)
+        initVw()
+    }
+
+    func initVw() {
+        let syncBtn = UIBarButtonItem(title: "同步", style: UIBarButtonItem.Style.done, target: self, action: #selector(self.syncInfos))
+        self.navigationItem.rightBarButtonItem = syncBtn
+    }
+
+    @objc func syncInfos() {
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.mode = .annularDeterminate
+        hud.label.text = "async..."
+        self.bll.recursiveProgressAuthorDatasource(datasource: self.bll.tsauthorDatasource) { (result) in
+            hud.hide(animated: true)
+        }
     }
 
 }

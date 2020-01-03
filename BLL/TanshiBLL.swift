@@ -53,6 +53,8 @@ class TanshiBLL: NSObject {
 
     var tsauthorReloadAction: (() -> Void)?
 
+    var authorFilepath: String = ""
+
     override init() {
         super.init()
     }
@@ -110,15 +112,62 @@ extension TanshiBLL {
     }
 
     /// 根据文件的sha值获取作者信息
-    func getAuthorBlob(sha: String) {
+    func getAuthorBlob(sha: String, path: String) {
+        self.authorFilepath = path
         TangshiUti.getBlobAuthorInfos(filesha: sha) { (infos: [TangshiAuthorModel?]) in
             self.tsauthorDatasource = infos as! [TangshiAuthorModel]
         }
     }
 
-    /// 作者信息同步
-    func syncAuthor() {
+    /// 同步成功则记录flag
+    func progressAuthorDiskFlag() {
+        let obj = YYCache(name: yycacheName)
+        obj?.setObject("1" as NSString, forKey: self.authorFilepath)
+        print("自动同步数据完毕，持久化flag完毕")
+    }
 
+    /// 递归同步TS作者信息
+    func recursiveProgressAuthorDatasource(datasource: [TangshiAuthorModel], resultAction: @escaping (_ action: Bool) -> Void) {
+        if datasource.count <= 0 {
+            progressAuthorDiskFlag()
+            resultAction(true)
+            return
+        }
+        if datasource.count >= pageNo {
+            // 处理50个如果成功 递归处理后面数据
+            let model = TangshiAuthorSyncModel()
+            var progressModels: [TangshiAuthorModel] = []
+            var nonProgressModels: [TangshiAuthorModel] = []
+            datasource.forEach({
+                if progressModels.count < pageNo {
+                    progressModels.append($0)
+                } else {
+                    nonProgressModels.append($0)
+                }
+            })
+            model.infos = progressModels
+            guard let infos = model.toJSON() else { return }
+            NormalUti.syncTSSCAuthor(infos: infos) { (result) in
+                if (((result as? NSDictionary)?["result"] as? Bool) ?? false) {
+                    self.recursiveProgressAuthorDatasource(datasource: nonProgressModels, resultAction: resultAction)
+                } else {
+                    resultAction(false)
+                }
+            }
+        } else {
+            // 处理当前数组所有数据 - 结束
+            let model = TangshiAuthorSyncModel()
+            model.infos = datasource
+            guard let infos = model.toJSON() else { return }
+            NormalUti.syncTSSCAuthor(infos: infos) { (result) in
+                if (((result as? NSDictionary)?["result"] as? Bool) ?? false) {
+                    self.progressAuthorDiskFlag()
+                    resultAction(true)
+                } else {
+                    resultAction(false)
+                }
+            }
+        }
     }
 
 }

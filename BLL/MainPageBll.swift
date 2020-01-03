@@ -15,9 +15,9 @@ import UIKit
 // MARK: Edit Your Own Infos
 class MainPageBll: NSObject {
 
-    var dataSource: [String] = [
-        "唐诗",
-        "宋词"
+    var dataSource: [(String, String)] = [
+        ("唐诗宋诗", "[处理完毕]"),
+        ("宋词", "[未处理]")
     ]
     
     override init() {

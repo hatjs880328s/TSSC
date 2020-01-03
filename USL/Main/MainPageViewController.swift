@@ -30,8 +30,8 @@ extension MainPageViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "reuseid")
-        cell.textLabel?.text = self.bll.dataSource[indexPath.row]
-        cell.detailTextLabel?.text = "- -"
+        cell.textLabel?.text = self.bll.dataSource[indexPath.row].0
+        cell.detailTextLabel?.text = self.bll.dataSource[indexPath.row].1
         return cell
     }
 

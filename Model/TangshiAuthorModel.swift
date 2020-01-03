@@ -26,3 +26,12 @@ class TangshiAuthorModel: NSObject, HandyJSON {
         super.init()
     }
 }
+
+/// 作者同步model
+class TangshiAuthorSyncModel: NSObject, HandyJSON {
+    var infos: [TangshiAuthorModel] = []
+
+    required override init() {
+        super.init()
+    }
+}

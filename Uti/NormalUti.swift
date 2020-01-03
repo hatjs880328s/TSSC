@@ -48,6 +48,13 @@ class NormalUti: NSObject {
         }
     }
 
+    /// 同步tsscauthor 信息
+    static func syncTSSCAuthor(infos: [String: Any], resultInfo: @escaping (_ resultInfo: Any?) -> Void) {
+        Alamofire.request(NormalConfig.syncTSSCAuthorApi, method: HTTPMethod.post, parameters: infos, encoding: JSONEncoding.default, headers: nil).responseJSON { (res) in
+            resultInfo(res.result.value)
+        }
+    }
+
     /// blob get 
     static func blobGet(sha: String, resultInfo: @escaping (_ resultInfo: Any?) -> Void) {
         let url = NormalConfig.blobUri + sha
