@@ -17,7 +17,7 @@ class MainPageBll: NSObject {
 
     var dataSource: [(String, String)] = [
         ("唐诗宋诗", "[处理完毕]"),
-        ("宋词", "[未处理]")
+        ("宋词", "[处理完毕]")
     ]
     
     override init() {
