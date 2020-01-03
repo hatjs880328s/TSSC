@@ -34,6 +34,13 @@
 		563B694F23B5FF8000B858BD /* TangshiAuthorDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B694D23B5FF8000B858BD /* TangshiAuthorDetailViewController.swift */; };
 		563B695023B5FF8000B858BD /* TangshiAuthorDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 563B694E23B5FF8000B858BD /* TangshiAuthorDetailViewController.xib */; };
 		5656312923BECDD900F70B55 /* GitBLOBModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5656312823BECDD900F70B55 /* GitBLOBModel.swift */; };
+		5656312D23BF154800F70B55 /* SongCiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5656312B23BF154800F70B55 /* SongCiViewController.swift */; };
+		5656312E23BF154800F70B55 /* SongCiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5656312C23BF154800F70B55 /* SongCiViewController.xib */; };
+		5656313023BF15D300F70B55 /* SongciBll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5656312F23BF15D300F70B55 /* SongciBll.swift */; };
+		5656313323BF19A800F70B55 /* SongciDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5656313123BF19A800F70B55 /* SongciDetailViewController.swift */; };
+		5656313423BF19A800F70B55 /* SongciDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5656313223BF19A800F70B55 /* SongciDetailViewController.xib */; };
+		5656313623BF1BC400F70B55 /* SongciModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5656313523BF1BC400F70B55 /* SongciModel.swift */; };
+		5656313823BF1E6200F70B55 /* NormalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5656313723BF1E6200F70B55 /* NormalExtension.swift */; };
 		9D1EAB89A20B3A4D79726928 /* libPods-PoietDataTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A0D193BB053F6595E697E9 /* libPods-PoietDataTests.a */; };
 		B271548E7AE0D9E3CB3B4252 /* libPods-PoietData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E988A1617962A12BA5FAF83 /* libPods-PoietData.a */; };
 /* End PBXBuildFile section */
@@ -84,6 +91,13 @@
 		563B694D23B5FF8000B858BD /* TangshiAuthorDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TangshiAuthorDetailViewController.swift; sourceTree = "<group>"; };
 		563B694E23B5FF8000B858BD /* TangshiAuthorDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TangshiAuthorDetailViewController.xib; sourceTree = "<group>"; };
 		5656312823BECDD900F70B55 /* GitBLOBModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitBLOBModel.swift; sourceTree = "<group>"; };
+		5656312B23BF154800F70B55 /* SongCiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCiViewController.swift; sourceTree = "<group>"; };
+		5656312C23BF154800F70B55 /* SongCiViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SongCiViewController.xib; sourceTree = "<group>"; };
+		5656312F23BF15D300F70B55 /* SongciBll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongciBll.swift; sourceTree = "<group>"; };
+		5656313123BF19A800F70B55 /* SongciDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongciDetailViewController.swift; sourceTree = "<group>"; };
+		5656313223BF19A800F70B55 /* SongciDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SongciDetailViewController.xib; sourceTree = "<group>"; };
+		5656313523BF1BC400F70B55 /* SongciModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongciModel.swift; sourceTree = "<group>"; };
+		5656313723BF1E6200F70B55 /* NormalExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalExtension.swift; sourceTree = "<group>"; };
 		5E988A1617962A12BA5FAF83 /* libPods-PoietData.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PoietData.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76631FE2EC92B6BD8394A1EB /* Pods-PoietData.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PoietData.release.xcconfig"; path = "Target Support Files/Pods-PoietData/Pods-PoietData.release.xcconfig"; sourceTree = "<group>"; };
 		7E1E048131F32EAAAF8B63CB /* Pods-PoietData.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PoietData.debug.xcconfig"; path = "Target Support Files/Pods-PoietData/Pods-PoietData.debug.xcconfig"; sourceTree = "<group>"; };
@@ -165,6 +179,7 @@
 				563B691023B5AE5E00B858BD /* NormalConfig.swift */,
 				563B691523B5AF0500B858BD /* NormalUti.swift */,
 				563B694523B5F93300B858BD /* PoietData-Bridging-Header.h */,
+				5656313723BF1E6200F70B55 /* NormalExtension.swift */,
 			);
 			path = Uti;
 			sourceTree = "<group>";
@@ -194,6 +209,7 @@
 				563B693E23B5E5EB00B858BD /* TangshiModel.swift */,
 				563B694B23B5FD9600B858BD /* TangshiAuthorModel.swift */,
 				5656312823BECDD900F70B55 /* GitBLOBModel.swift */,
+				5656313523BF1BC400F70B55 /* SongciModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -201,6 +217,7 @@
 		563B692A23B5DFF800B858BD /* USL */ = {
 			isa = PBXGroup;
 			children = (
+				5656312A23BF153300F70B55 /* SongCi */,
 				563B693323B5E1E900B858BD /* TangShi */,
 				563B692B23B5DFFE00B858BD /* Main */,
 			);
@@ -221,6 +238,7 @@
 			children = (
 				563B693123B5E0AA00B858BD /* MainPageBll.swift */,
 				563B693823B5E24700B858BD /* TanshiBLL.swift */,
+				5656312F23BF15D300F70B55 /* SongciBll.swift */,
 			);
 			path = BLL;
 			sourceTree = "<group>";
@@ -246,6 +264,17 @@
 				563B694223B5ED1F00B858BD /* DetailCellTableViewCell.xib */,
 			);
 			path = v;
+			sourceTree = "<group>";
+		};
+		5656312A23BF153300F70B55 /* SongCi */ = {
+			isa = PBXGroup;
+			children = (
+				5656312B23BF154800F70B55 /* SongCiViewController.swift */,
+				5656312C23BF154800F70B55 /* SongCiViewController.xib */,
+				5656313123BF19A800F70B55 /* SongciDetailViewController.swift */,
+				5656313223BF19A800F70B55 /* SongciDetailViewController.xib */,
+			);
+			path = SongCi;
 			sourceTree = "<group>";
 		};
 		81140EB1B67174BE367A116B /* Pods */ = {
@@ -350,6 +379,8 @@
 				563B690823B5AD6B00B858BD /* LaunchScreen.storyboard in Resources */,
 				563B690523B5AD6B00B858BD /* Assets.xcassets in Resources */,
 				563B690323B5AD6A00B858BD /* Main.storyboard in Resources */,
+				5656312E23BF154800F70B55 /* SongCiViewController.xib in Resources */,
+				5656313423BF19A800F70B55 /* SongciDetailViewController.xib in Resources */,
 				563B694423B5ED1F00B858BD /* DetailCellTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -416,6 +447,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				563B693F23B5E5EB00B858BD /* TangshiModel.swift in Sources */,
+				5656313623BF1BC400F70B55 /* SongciModel.swift in Sources */,
 				563B694A23B5F97B00B858BD /* LFCGzipUtility.m in Sources */,
 				563B693C23B5E3CF00B858BD /* TangshiDetailViewController.swift in Sources */,
 				563B693623B5E1FF00B858BD /* TangshiViewController.swift in Sources */,
@@ -423,13 +455,17 @@
 				563B694C23B5FD9600B858BD /* TangshiAuthorModel.swift in Sources */,
 				563B691623B5AF0500B858BD /* NormalUti.swift in Sources */,
 				563B692E23B5E01C00B858BD /* MainPageViewController.swift in Sources */,
+				5656313323BF19A800F70B55 /* SongciDetailViewController.swift in Sources */,
 				563B690023B5AD6A00B858BD /* ViewController.swift in Sources */,
 				563B693923B5E24700B858BD /* TanshiBLL.swift in Sources */,
 				563B68FE23B5AD6A00B858BD /* AppDelegate.swift in Sources */,
+				5656312D23BF154800F70B55 /* SongCiViewController.swift in Sources */,
+				5656313823BF1E6200F70B55 /* NormalExtension.swift in Sources */,
 				563B691123B5AE5E00B858BD /* NormalConfig.swift in Sources */,
 				563B694323B5ED1F00B858BD /* DetailCellTableViewCell.swift in Sources */,
 				563B694F23B5FF8000B858BD /* TangshiAuthorDetailViewController.swift in Sources */,
 				5656312923BECDD900F70B55 /* GitBLOBModel.swift in Sources */,
+				5656313023BF15D300F70B55 /* SongciBll.swift in Sources */,
 				563B691423B5AEB400B858BD /* TangshiUti.swift in Sources */,
 				563B692923B5D71100B858BD /* GitPathModel.swift in Sources */,
 			);

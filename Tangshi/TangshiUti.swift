@@ -82,4 +82,20 @@ class TangshiUti: NSObject {
         }
     }
 
+    /// 获取SC文件详情
+    static func getSCFileDetailInfos(filePath: String, resultAction: @escaping (_ result: [SongciModel?]) -> Void) {
+        NormalUti.getDirOrFileInfo(path: filePath) { (result) in
+            guard let realDic = result as? NSDictionary else { resultAction([]) ; return }
+            guard let model = GitPathModel.deserialize(from: realDic) else { resultAction([]) ; return }
+
+            let content = (model.content as NSString).replacingOccurrences(of: "\n", with: "")
+
+            let jsonStr = NormalUti.base64Decode(base64Str: content)
+
+            let insos = [SongciModel].deserialize(from: jsonStr)
+
+            resultAction(insos ?? [])
+        }
+    }
+
 }

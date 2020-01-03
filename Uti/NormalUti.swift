@@ -68,4 +68,11 @@ class NormalUti: NSObject {
             resultInfo(response.result.value)
         }
     }
+
+    /// 同步SC信息
+    static func syncSC(infos: [String: Any], resultInfo: @escaping (_ resultInfo: Any?) -> Void) {
+        Alamofire.request(NormalConfig.syncSCApi, method: HTTPMethod.post, parameters: infos, encoding: JSONEncoding.default, headers: nil).responseJSON { (res) in
+            resultInfo(res.result.value)
+        }
+    }
 }

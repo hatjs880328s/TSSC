@@ -30,6 +30,9 @@ class NormalConfig: NSObject {
     /// sync tssc api
     static var syncTSSCApi: String = "\(NormalConfig.baseApiHost)/tssc/sync"
 
+    /// sync SC api
+    static var syncSCApi: String = "\(NormalConfig.baseApiHost)/sc/sync"
+
     /// sync tssc author api
     static var syncTSSCAuthorApi: String = "\(NormalConfig.baseApiHost)/tsscauthor/sync"
 }

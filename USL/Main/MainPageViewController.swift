@@ -45,6 +45,10 @@ extension MainPageViewController: UITableViewDelegate, UITableViewDataSource {
             let con = TangshiViewController()
             con.path = "json"
             self.navigationController?.pushViewController(con, animated: true)
+        case 1:
+            let con = SongCiViewController()
+            con.path = "ci"
+            self.navigationController?.pushViewController(con, animated: true)
         default:
             break
         }
