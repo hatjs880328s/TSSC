@@ -25,6 +25,8 @@ class SongCiViewController: UIViewController {
     /// 是否需要自动同步操作 - 默认为false
     private var shouldAutoStart: Bool = false
 
+    var kvoob: NSKeyValueObservation!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         MBProgressHUD.showAdded(to: self.view, animated: true)
@@ -35,6 +37,10 @@ class SongCiViewController: UIViewController {
             self?.tab.reloadData()
         }
         initVw()
+
+        kvoob = observe(\.tab.contentOffset, options: [.new]) { (objectss, changsse) in
+            print("halo....\(String(describing: changsse.newValue))")
+        }
     }
 
     func initVw() {
